@@ -1,5 +1,14 @@
-.color__form{
+.color__form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
+  width: 50vw;
+}
+.colorForm__button {
+  width: 120px;
+  margin: 10px 0px;
+}
+.Input__wrapper{
     display: flex;
-    flex-direction: column;
-
+    gap: 0.5rem;
 }
