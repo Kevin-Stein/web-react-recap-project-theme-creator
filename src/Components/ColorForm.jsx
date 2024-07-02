@@ -13,9 +13,9 @@ export default function ColorForm({ colorSubmit }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-
     const newColor = { role: event.target.role.value, hex: hexColor, contrastText: contrastColor };
     colorSubmit(newColor);
+    event.target.reset()
   }
 
   return (
@@ -25,12 +25,14 @@ export default function ColorForm({ colorSubmit }) {
       <label htmlFor="hex">Hex</label>
       <div className="Input__wrapper">
           <input
+          className="input"
             type="text"
             id="hex"
             name="hex"
             aria-label="hex_color_input_field"
             value={hexColor}
             onChange={updateHexColor}
+            placeholder="sample color"
           ></input>
           <input
             type="color"
@@ -44,6 +46,7 @@ export default function ColorForm({ colorSubmit }) {
       <label htmlFor="contrastText">Contrast Text</label>
       <div className="Input__wrapper">
           <input
+          className="input"
             type="text"
             id="contrastText"
             name="contrastText"
