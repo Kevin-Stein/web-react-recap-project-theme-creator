@@ -9,6 +9,11 @@
   margin: 10px 0px;
 }
 .Input__wrapper{
+  justify-content: space-between;
+  width: 50vw;
     display: flex;
     gap: 0.5rem;
+}
+.Input__wrapper .input {
+  width: 100%;
 }
