@@ -2,10 +2,11 @@ import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import "./App.css";
 import ColorForm from "./Components/ColorForm";
-import { useState } from "react";
+
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [colorArray, setColorArray] = useState(initialColors);
+  const [colorArray, setColorArray] = useLocalStorageState("theme", {defaultValue:initialColors});
 
   function addColor(newColor) {
     setColorArray([{ id: crypto.randomUUID(), ...newColor }, ...colorArray]);
