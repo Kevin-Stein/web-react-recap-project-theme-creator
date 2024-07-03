@@ -1,19 +1,12 @@
 import { useState } from "react";
 import "./Color.css";
-useState;
+
+import ColorForm from "../ColorForm";
 
 export default function Color({ color, onDelete }) {
   const [deleteMessage, setDeleteMessage] = useState(false);
-
-  function handleDeleteClick() {
-    setDeleteMessage(true);
-  }
-  function handleConfirmDelete() {
-    onDelete(color.id);
-  }
-  function handleCancelDelete() {
-    setDeleteMessage(false);
-  }
+  const [edit, setEdit] = useState(false);
+  
 
   return (
     <div
@@ -25,14 +18,29 @@ export default function Color({ color, onDelete }) {
     >
       <h3 className="color-card-headline">{color.hex}</h3>
       <h4>{color.role}</h4>
-      {deleteMessage ? (
-        <div>
-          <p className="color-card-hightlight">Really delete?</p>
-          <button onClick={handleCancelDelete}>CANCEL</button>
-          <button onClick={handleConfirmDelete}>DELETE</button>
-        </div>
+      <p>contrast: {color.contrastText}</p>
+      {edit ? (
+        <>
+          <ColorForm buttonName="UPDATE COLOR" />
+          <button onClick={() => setEdit(false)} className="colorForm__button" type="button">
+            CANCEL
+          </button>
+        </>
       ) : (
-        <button onClick={handleDeleteClick}>DELETE</button>
+        <>
+          {deleteMessage ? (
+            <div>
+              <p className="color-card-highlight">Really delete?</p>
+              <button onClick={() => setDeleteMessage(false)}>CANCEL</button>
+              <button onClick={() => onDelete(color.id)}>DELETE</button>
+            </div>
+          ) : (
+            <>
+              <button onClick={() => setDeleteMessage(true)}>DELETE</button>
+              <button onClick={() => setEdit(true)}>EDIT</button>
+            </>
+          )}
+        </>
       )}
     </div>
   );
