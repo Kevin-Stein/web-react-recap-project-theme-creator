@@ -12,13 +12,13 @@ function App() {
   }
 
   function handleDeleteColor(id) {
-    setColorArray ((prevColors) => prevColors.filter((color) => color.id !== id));
-    }
+    setColorArray((removeColors) => removeColors.filter((color) => color.id !== id));
+  }
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm colorSubmit={addColor} />
+      <ColorForm colorSubmit={addColor} buttonName="ADD COLOR" />
 
       {colorArray.length === 0 ? (
         <p>No colors.. start by adding one!</p>

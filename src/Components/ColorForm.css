@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   margin: 0px 10px;
-  width: 50vw;
+  width: 280px;
 }
 .colorForm__button {
-  width: 120px;
+  width: 150px;
   margin: 10px 0px;
 }
 .Input__wrapper{
   justify-content: space-between;
-  width: 50vw;
+  width: 280px;
     display: flex;
     gap: 0.5rem;
 }
