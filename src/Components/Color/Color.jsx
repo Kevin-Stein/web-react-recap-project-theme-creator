@@ -3,18 +3,18 @@ import "./Color.css";
 
 import ColorForm from "../ColorForm";
 
-export default function Color({ color, onDelete }) {
+export default function Color({ color, onDelete, onEdit }) {
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [edit, setEdit] = useState(false);
+console.log(color)
 
-  async function writeClipboardText(hexColor) {
+  async function writeClipboardText(text) {
     try {
-      await navigator.clipboard.writeText(hexColor);
+      await navigator.clipboard.writeText(text);
     } catch (error) {
       console.error(error.message);
     }
   }
-  
 
   return (
     <div
@@ -25,12 +25,16 @@ export default function Color({ color, onDelete }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
-      <button onClick={writeClipboardText(color.hex)}>COPY</button>
+      <button onClick={() => writeClipboardText(color.hex)}>COPY</button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {edit ? (
         <>
-          <ColorForm buttonName="UPDATE COLOR" />
+          <ColorForm buttonName="UPDATE COLOR" colorSubmit={updatedColor => {
+              onEdit({ id: color.id, ...updatedColor });
+              setEdit(false);
+            }}
+            currentColorValues={color}/>
           <button onClick={() => setEdit(false)} className="colorForm__button" type="button">
             CANCEL
           </button>

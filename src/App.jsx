@@ -12,6 +12,10 @@ function App() {
     setColorArray([{ id: crypto.randomUUID(), ...newColor }, ...colorArray]);
   }
 
+  function editColor(updatedColor) {
+    setColorArray(colorArray.map(color => (color.id === updatedColor.id ? updatedColor : color)));
+  }
+
   function handleDeleteColor(id) {
     setColorArray((removeColors) => removeColors.filter((color) => color.id !== id));
   }
@@ -25,7 +29,7 @@ function App() {
         <p>No colors.. start by adding one!</p>
       ) : (
         colorArray.map((color) => {
-          return <Color key={color.id} color={color} onDelete={handleDeleteColor} />;
+          return <Color key={color.id} color={color} onDelete={handleDeleteColor} onEdit={editColor} />;
         })
       )}
     </>
