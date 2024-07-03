@@ -7,7 +7,7 @@ export default function Color({ color, onDelete }) {
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [edit, setEdit] = useState(false);
 
-  async function writeClipboardText(hexColor) {
+  async function copyToClipboard(hexColor) {
     try {
       await navigator.clipboard.writeText(hexColor);
     } catch (error) {
@@ -25,7 +25,7 @@ export default function Color({ color, onDelete }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
-      <button onClick={writeClipboardText(color.hex)}>COPY</button>
+      <button onClick={copyToClipboard(color.hex)}>COPY</button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {edit ? (
